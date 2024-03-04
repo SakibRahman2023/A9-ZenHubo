@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZenHubo</title>
+    <!-- daisyUI -->
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@4.7.2/dist/full.min.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- google font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Mulish:wght@200..1000&display=swap"
+        rel="stylesheet">
+
+    <!-- font awesome -->
+    <script src="https://kit.fontawesome.com/079ea722b6.js" crossorigin="anonymous"></script>
+    <!-- style -->
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .mulish {
+            font-family: "Mulish", sans-serif;
+        }
+
+        .inter {
+            font-family: "Inter", sans-serif;
+        }
+
+        
+    </style>
+</head>
+
+<body class="max-w-[1440px]  mulish ">
+    <!-- navbar -->
+    <header class="mb-12 mx-5 lg:mx-32 my-5 lg:my-16">
+        <div class="navbar bg-base-100">
+            <div class="flex-1">
+                <h3 class="font-black text-4xl">ZenHubo</h3>
+            </div>
+            <div class="flex-none space-x-5 ">
+                <ul class=" flex space-x-5 px-1">
+                    <!-- tooltip-->
+                    <div class="tooltip hover:tooltip-open tooltip-top" data-tip="Home">
+                        <button class="rounded-full"><i class="fa-solid fa-house bg-opacity-5 hidden lg:block bg-black border-2 text-[#12132D99] rounded-full p-3.5"></i></button>
+                    </div>
+                    <div class="tooltip hover:tooltip-open tooltip-top" data-tip="Edit">
+                        <button class="rounded-full"><i class="fa-solid fa-pencil bg-opacity-5 hidden lg:block  bg-black border-2 text-[#12132D99] rounded-full p-3.5"></i></button>
+                    </div>
+                    <div class="tooltip hover:tooltip-open tooltip-top" data-tip="Add">
+                        <button class="rounded-full"><i class="fa-solid fa-user-plus bg-opacity-5 hidden lg:block bg-black border-2 text-[#12132D99] rounded-full p-3.5"></i></button>
+                    </div>
+                    <div class="tooltip hover:tooltip-open tooltip-top" data-tip="Page">
+                        <button class="rounded-full"><i class="fa-regular fa-flag bg-opacity-5 hidden lg:block bg-black border-2 text-[#12132D99] rounded-full p-3.5"></i></button>
+                    </div>
+                    <li><Button class="bg-blue-400 rounded-3xl px-6 py-2  text-white font-bold text-xl">Sign In</Button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </header>
+
+    <main class="mx-5 lg:mx-32 my-5 lg:my-16">
+        <!-- banner section -->
+
+        <section class="section1 bg-w-full rounded-3xl p-5 lg:p-14">
+            <div class="lg:flex  justify-center  lg:space-x-10 p-3 lg:p-14  ">
+                <div class="text-white lg:flex-1 grid space-y-6">
+                    
+                    <h3 class="font-black text-3xl lg:text-5xl ">Welcome to the <br> <span class="text-blue-400">ZenHubo</span> Forum</h3>
+                    <p class="pb-6">Where Dreams Dance Freely <br> in the Realm!</p>
+                    <!-- search -->
+                    <div class="lg:flex ">
+                        <input id="seach-field" class="px-4 py-4 lg:w-3/5 rounded-full text-black" type="text" placeholder="Search here anything">
+                        <button onclick="handleSearch()" class="bg-blue-400 rounded-full  px-4 lg:-ml-20   text-white font-bold text-xl">Search</button>
+                    </div>
+            
+                </div>
+                <div class="bg-white px-8 pt-12 space-y-4 rounded-3xl lg:w-[370px] h-[290px] mt-10 lg:mt-0">
+                    <div class="flex justify-between">
+                        <p>Registered Users</p>
+                        <p>01</p>
+                    </div>
+                    <div class="flex justify-between">
+                        <p>Forum</p>
+                        <p>05</p>
+                    </div>
+                    <div class="flex justify-between">
+                        <p>Topics</p>
+                        <p>01</p>
+                    </div>
+                    <div class="flex justify-between">
+                        <p>Replies</p>
+                        <p>01</p>
+                    </div>
+            
+                </div>
+            </div>
+        </section>
+
+        <!-- Let’s Discuss -->
+        <section  class="my-12">
+            <div>
+                <h3 class="font-black text-4xl text-center pb-6">Let’s Discuss</h3>
+                <p class="text-center pb-6 text-[#12132D99] inter">Where Curiosity Fuels Discovery, Collaboration Breeds Insight, and Together,<br> We Forge the Path of Progress and
+                Understanding.</p>
+            </div>
+
+            <!-- loader -->
+            <div id="loading" class="text-center my-5 hidden">
+                <span class=" loading loading-spinner loading-lg"></span>
+            </div>
+            <!-- card -->
+            <div class="lg:flex space-y-5 lg:space-x-5">
+                <div id="post-container">
+                    
+                </div>
+                <!-- show board -->
+                <div class="bg-[#12132D0D] p-5 rounded-2xl min-w-[370px] h-min">
+                    <div class="flex justify-between text-[#12132D99]">
+                        <div>
+                            <p class="inter">Title</p>
+                        </div>
+                        <div class="flex">
+                            <p><i class="fa-solid fa-check  text-green-300"></i></p>
+                            <p><i class="fa-solid fa-check  text-green-300 -ml-2"></i></p>
+                            <p class="pl-3 inter ">Mark as read <span id="span" class="px-2 py-1 bg-green-500 rounded-full">0</span></p>
+                        </div>
+                    </div>
+                    <div id="div-container">
+                        
+                    </div>
+                </div>
+            
+            </div>
+            
+        </section>
+
+        <!-- join -->
+        <section class="my-12">
+            <div class="hero min-h-screen lg:min-h-[400px] rounded-3xl b bg-[#1E1E1E]">
+                <div class="hero-content flex-col lg:flex-row-reverse px-5 lg:px-20">
+                    <img class="w-50%" src="images/joinforum.png" class="max-w-sm rounded-lg shadow-2xl" />
+                    <div class="text-white ">
+                        <h1 class="text-5xl font-black">Join Our Forum</h1>
+                        <p class="py-6 text-[FFFFFFCC] inter">Where Voices Converge, Ideas Multiply, and Connections Flourish—Together, Let's Shape Tomorrow's Discourse and Forge New
+                        Horizons!</p>
+                        <button class="bg-blue-400 rounded-3xl px-6 py-2 font-bold text-xl">Registered Now</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Latest Post -->
+        <section class="my-12">
+            <div>
+                <h3 class="font-black text-4xl text-center pb-6">Latest Posts</h3>
+                <p class="text-center pb-6 text-[#12132D99] inter">Where Insights Flourish, Ideas Spark, and Conversations Thrive—Engage with the <br> Latest Posts to Stay Informed and
+                Inspired!</p>
+            </div>
+            <!-- card div -->
+            <div >
+                <div id="latest-container" class=" grid lg:grid-cols-3 gap-5">
+                
+                   
+                </div>
+            </div>
+
+        </section>
+
+    </main>
+    <!-- footer -->
+    <footer class="mt-12">
+        <footer class="footer footer-center p-10 bg-base-200 text-base-content rounded">
+            <nav class="grid  gap-4">
+                <h3 class="text-[#12132D] font-black text-4xl">ZenHubo</h3>
+                <p class="max-w-[600px]">Connect with us on Facebook, Twitter, and Instagram for updates and inquiries. Stay tuned  for news, tips, and more.
+                Let's engage together! Follow us now for the latest updates.</p>
+            </nav>
+            <nav>
+                <div class="grid grid-flow-col gap-4">
+                    <i class="fa-brands fa-twitter"></i>
+                    <i class="fa-brands fa-facebook"></i>
+                    <i class="fa-brands fa-instagram"></i>
+                    <i class="fa-brands fa-github"></i>
+                </div>
+
+            </nav>
+            <hr class="border-1 border-black opacity-10 w-full">
+            <aside>
+                <p>Copyright © 2024 - All right reserved by ZenHubo</p>
+            </aside>
+        </footer>
+    </footer>
+    <!-- js connect -->
+    <script src="js/discuss.js"></script>
+    <script src="js/Latest.js"></script>
+</body>
+
+</html>
